@@ -23,6 +23,7 @@ declare module "yandl" {
         once<K extends keyof BotEvents>(event: K, listener: (...args: BotEvents[K]) => void): this
         emit<K extends keyof BotEvents>(event: K, ...args: BotEvents[K]): boolean;
         initUser(): Promise<void>
+        command(data: CommandData): Command
     }
     interface BotEvents {
         debug: [string]
