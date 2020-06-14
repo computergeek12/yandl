@@ -12,6 +12,12 @@
     "discord"
   ],
   "author": "OMGer",
+  "bugs": "https://github.com/OMGerCoder/yandl/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/OMGerCoder/yandl"
+  },
+  "homepage": "https://github.com/OMGerCoder/yandl",
   "license": "GPL-3.0",
   "dependencies": {
     "discord.js": "^12.2.0",
