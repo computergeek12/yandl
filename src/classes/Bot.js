@@ -122,15 +122,6 @@ class Bot extends EventEmitter {
         if(this.verboseMode) console.log('Command sent')
         if(commandObj) commandObj.run(this, msg, args)
     }
-    async command(data) {
-        return new Command(this, {
-            name: data.name,
-            description: data.description,
-            aliases: data.aliases,
-            usage: data.usage,
-            run: data.run
-        })
-    }
 
 }
 module.exports = Bot
