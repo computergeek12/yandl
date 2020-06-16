@@ -132,7 +132,7 @@ class Bot extends EventEmitter {
             run: (bot, msg, args) => {
                 if(!this.ownerId) return msg.send('This bot isn\'t owned! (Specify an owner ID in the constructor)')
                 if(!msg.author.id === this.ownerId) return msg.send('U can\'t do that.')
-                var cmdObj = this.commands.get()
+                var cmdObj = this.commands.get(args[0])
                 if(!cmdObj) return msg.send('That command does not exist.')
                 cmdObj.enabled = false
                 msg.send('Ok!')
