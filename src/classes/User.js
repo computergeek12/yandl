@@ -67,12 +67,11 @@ class User {
      * @memberof User
      * @type {String}
      */
-    getAvatar() {
+    get avatarURL() {
         var URLParts = ['http://cdn.discordapp.com/avatars']
         URLParts.push(this.id)
         URLParts.push(this.avatar + '.png')
         return URLParts.join('/')
-
     }
 }
 module.exports = User
