@@ -102,7 +102,7 @@ class Bot extends EventEmitter {
                     let codeToEval = args.join(' ')
                     let evaluated = inspect(await eval(codeToEval))
                     if(codeToEval) {
-                        msg.send(`\`\`\`js\n// Successful.\n${trim(evaluated, 1024)}`)
+                        msg.send(`\`\`\`js\n// Successful.\n${trim(evaluated, 1024)}\`\`\``)
                     } else {
                         msg.send('Nothing to execute.')
                     }
