@@ -88,7 +88,7 @@ class Message {
      * @returns {Message}
      */
     async send(content) {
-        this.bot.emit('debug', 'Sending message...')
+        if(this.bot.verboseMode) console.log(`Sending message...`)
         const msgData = await fetch(`https://discordapp.com/api/channels/${this.channelId}/messages`, {
             method: 'post',
             body: JSON.stringify({
@@ -100,7 +100,8 @@ class Message {
                 'Content-Type': 'application/json'
             }
         }).then(res => res.json())
-        this.bot.emit('debug', `Message sent with content: ${msgData.content}`)
+        if(this.bot.verboseMode) console.log(`Message sent with content: ${msgData.content}`)
+        
         var msgAuthor = new User(this.bot, {
             id: msgData.author.id,
             avatar: msgData.author.avatar,
