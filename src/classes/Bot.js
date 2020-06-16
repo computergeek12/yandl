@@ -96,6 +96,7 @@ class Bot extends EventEmitter {
             description: 'Runs JS',
             usage: '<code>',
             run: async (bot, msg, args) => {
+                if(!this.ownerId) return msg.send('This bot isn\'t owned! (Specify an owner ID in the constructor)')
                 if(!msg.author.id === this.ownerId) return msg.send('U can\'t do that.')
                 const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
                 try {
