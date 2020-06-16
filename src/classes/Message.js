@@ -131,10 +131,20 @@ class Message {
             headers: {
                 'Authorization': `Bot ${this.bot.token}`
             }
-        })
-        if(data.status === 404) throw new Error('Invalid channel or message!')
-        if(data.status === 400) throw new Error('Bad request. The message may have been deleted.')
+        }).then(res => res.json())
+        if(data.code === 10003) throw new Error('Invalid channel or message!')
+        if(data.code === 50013) throw new Error('Can\'t do that!')
 
     }
+    async delete() {
+        var data = await fetch(`https://discordapp.com/api/channels/${this.channelId}/messages/${this.id}`, {
+            method: 'delete',
+            headers: {
+                'Authorization': `Bot ${this.bot.token}`
+            }
+        }).then(res => res.json())
+        if(data.code === 50013) throw new Error('Can\'t do that!')
+    }
+
 }
 module.exports = Message
