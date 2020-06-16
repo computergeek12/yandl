@@ -58,6 +58,12 @@ class Command {
          * @type {Function}
          */
         this.run = data.run
+        /**
+         * Is the command enabled?
+         * @memberof Command
+         * @type {Boolean}
+         */
+        this.enabled = true
     }
     /**
      * Activate the command.

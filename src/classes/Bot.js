@@ -113,6 +113,32 @@ class Bot extends EventEmitter {
             }
         })
         evalCmd.activate()
+        const enableCmd = new Command(this, {
+            name: 'enable',
+            description: 'Enables a command',
+            run: (bot, msg, args) => {
+                if(!this.ownerId) return msg.send('This bot isn\'t owned! (Specify an owner ID in the constructor)')
+                if(!msg.author.id === this.ownerId) return msg.send('U can\'t do that.')
+                var cmdObj = this.commands.get()
+                if(!cmdObj) return msg.send('That command does not exist.')
+                cmdObj.enabled = true
+                msg.send('Ok!')
+            }
+        })
+        enableCmd.activate()
+        const disableCmd = new Command(this, {
+            name: 'disable',
+            description: 'Disables a command',
+            run: (bot, msg, args) => {
+                if(!this.ownerId) return msg.send('This bot isn\'t owned! (Specify an owner ID in the constructor)')
+                if(!msg.author.id === this.ownerId) return msg.send('U can\'t do that.')
+                var cmdObj = this.commands.get()
+                if(!cmdObj) return msg.send('That command does not exist.')
+                cmdObj.enabled = false
+                msg.send('Ok!')
+            }
+        })
+        disableCmd.activate()
     }
     /**
      * Connects to Discord.
@@ -148,6 +174,7 @@ class Bot extends EventEmitter {
         var cmd = args.shift().toLowerCase()
         var commandObj = this.commands.get(cmd)
         if(this.verboseMode) console.log('Command sent')
+        if(!commandObj.enabled) return;
         if(commandObj) commandObj.run(this, msg, args)
     }
 
