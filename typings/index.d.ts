@@ -17,7 +17,8 @@ declare module "yandl" {
         guilds: Collection<string, Guild>
         ws: WebSocketManager
         user?: User
-        constructor(token: string, prefix: string)
+        ownerId: string
+        constructor(token: string, prefix: string, ownerId: string)
         connect(): void
         on<K extends keyof BotEvents>(event: K, listener: (...args: BotEvents[K]) => void): this
         once<K extends keyof BotEvents>(event: K, listener: (...args: BotEvents[K]) => void): this

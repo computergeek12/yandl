@@ -4,7 +4,7 @@ const { Collection } = require('discord.js')
 const WebSocketManager = require('./WebSocketManager')
 const fetch = require('node-fetch')
 const Command = require('./Command')
-const { get } = require('http')
+const { inspect } = require('util')
 /**
  * @class
  * The main Discord API hub.
@@ -17,7 +17,7 @@ class Bot extends EventEmitter {
      * @param {String} token The bot's token
      * @param {String} prefix The bot's prefix
      */
-    constructor(token, prefix) {
+    constructor(token, prefix, ownerId) {
         super()
 
         /**
@@ -62,6 +62,12 @@ class Bot extends EventEmitter {
          * @memberof Bot
          */
         this.verboseMode = false
+        /**
+         * The bot's Owner ID.
+         * @type {String}
+         * @memberof Bot
+         */
+        this.ownerId = ownerId
         var helpCmd = new Command(this, {
             name: 'help',
             description: 'Get help with a command',
@@ -85,6 +91,27 @@ class Bot extends EventEmitter {
             }
         })
         helpCmd.activate()
+        var evalCmd = new Command(this, {
+            name: 'eval',
+            description: 'Runs JS',
+            usage: '<code>',
+            run: async (bot, msg, args) => {
+                if(!msg.author.id === this.ownerId) return msg.channel.send('U can\'t do that.')
+                const trim = (str, max) => ((str.length > max) ? `${str.slice(0, max - 3)}...` : str);
+                try {
+                    let codeToEval = args.join(' ')
+                    let evaluated = inspect(await eval(codeToEval))
+                    if(codeToEval) {
+                        return msg.send(`\`\`\`js\n// Successful.\n${trim(evaluated)}`)
+                    } else {
+                        msg.send('Nothing to execute.')
+                    }
+                } catch(err) {
+                    msg.send(`An error occured. \`${err}\``)
+                }
+            }
+        })
+        evalCmd.activate()
     }
     /**
      * Connects to Discord.
