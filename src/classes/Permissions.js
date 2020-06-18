@@ -19,6 +19,11 @@ class Permissions extends BitField {
         return (checkAdmin && super.has(this.constructor.FLAGS.ADMINISTRATOR)) || super.any(perm)
         
     }
+    /**
+    * Checks if a user has a permission.
+    * @param {PermissionResolvable} perm A resolvable permission
+    * @param {Boolean} checkAdmin Bypass checks if the user has admin?
+    */
     has(perm, checkAdmin = true) {
         return (checkAdmin && super.has(this.constructor.FLAGS.ADMINISTRATOR)) || super.any(perm)
     }
