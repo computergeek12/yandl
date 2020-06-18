@@ -1,6 +1,6 @@
 {
   "name": "yandl",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "description": "Yet Another Node.js Discord Library",
   "main": "src/index.js",
   "types": "typings/index.d.ts",

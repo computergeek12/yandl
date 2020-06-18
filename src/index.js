@@ -12,5 +12,6 @@ module.exports = {
     Command: require('./classes/Command'),
     Message: require('./classes/Message'),
     User: require('./classes/User'),
-    Guild: require('./classes/Guild')
+    Guild: require('./classes/Guild'),
+    Permissions: require('./classes/Permissions')
 }
