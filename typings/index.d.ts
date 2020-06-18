@@ -1,7 +1,7 @@
 declare module "yandl" {
     import WebSocket from 'ws'
     import { EventEmitter } from 'events'
-    import { Collection } from 'discord.js'
+    import { Collection, BitField } from 'discord.js'
     type Snowflake = string
     class WebSocketManager {
         heartbeat?: number
@@ -109,5 +109,10 @@ declare module "yandl" {
         owner: string
         mfarequired: boolean
         constructor(bot: Bot, data: GuildData)
+    }
+    type PermissionResolvable = string|number|Permissions|Array<PermissionResolvable>
+    class Permissions extends BitField {
+        has(perm: PermissionResolvable, checkAdmin: boolean = true): boolean
+        any(perm: PermissionResolvable, checkAdmin: boolean = true): boolean
     }
 }
