@@ -115,4 +115,28 @@ declare module "yandl" {
         has(perm: PermissionResolvable, checkAdmin: boolean = true): boolean
         any(perm: PermissionResolvable, checkAdmin: boolean = true): boolean
     }
+    type ChannelData = {
+        id: Snowflake
+        type: Number
+        name: String
+    }
+    type TextChannelData = {
+        id: Snowflake
+        type: number
+        name: string
+        topic?: string
+        nsfw?: boolean
+    }
+    class BaseChannel {
+        bot: Bot
+        id: Snowflake
+        type: Number
+        name: String
+        constructor(bot: Bot, data: ChannelData)
+    }
+    class TextChannel extends BaseChannel {
+        topic?: string
+        nsfw?: string
+        constructor(bot: Bot, data: TextChannelData)
+    }
 }
