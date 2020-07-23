@@ -4,6 +4,7 @@ const { Collection } = require('discord.js')
 const WebSocketManager = require('./WebSocketManager')
 const fetch = require('node-fetch')
 const Command = require('./Command')
+const Guild = require('./Guild')
 const { inspect } = require('util')
 /**
  * @class
@@ -34,7 +35,7 @@ class Bot extends EventEmitter {
         this.prefix = prefix
         /**
          * The bot's commands.
-         * @type {Collection}
+         * @type {Collection<String, Command>}
          * @memberof Bot
          */
         this.commands = new Collection()
@@ -46,7 +47,7 @@ class Bot extends EventEmitter {
         this.ws = new WebSocketManager(this)
         /**
          * The bot's guild cache.
-         * @type {Collection}
+         * @type {Collection<Snowflake, Guild>}
          * @memberof Bot
          */
         this.guilds = new Collection()

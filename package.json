@@ -1,6 +1,6 @@
 {
   "name": "yandl",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Yet Another Node.js Discord Library",
   "main": "src/index.js",
   "types": "typings/index.d.ts",
@@ -12,12 +12,12 @@
     "discord"
   ],
   "author": "OMGer",
-  "bugs": "https://github.com/OMGerCoder/yandl/issues",
+  "bugs": "https://github.com/yeetbots/yandl/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OMGerCoder/yandl"
+    "url": "https://github.com/yeetbots/yandl"
   },
-  "homepage": "https://github.com/OMGerCoder/yandl",
+  "homepage": "https://github.com/yeetbots/yandl",
   "license": "GPL-3.0",
   "dependencies": {
     "discord.js": "^12.2.0",
